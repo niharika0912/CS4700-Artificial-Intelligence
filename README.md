@@ -1,5 +1,4 @@
-# CS4700-Artificial-Intelligence
-# Bonus Assignment - CS4700 Artificial Intelligence
+# Bonus Assignment  - CS4700 Artificial Intelligence
 
 ## Student Information
 - **Name:** Niharika Goud Cika
@@ -9,7 +8,7 @@
 - **University:** University of Central Missouri  
 
 ## Overview
-This repository contains solutions for **Bonus Assignment 2** in **CS4700 - Artificial Intelligence**. The assignment covers different AI and ML techniques including **Linear Regression, K-Means Clustering, Neural Networks, and Reinforcement Learning**.
+This repository contains solutions for **Bonus Assignment** in **CS4700 - Artificial Intelligence**. The assignment covers different AI and ML techniques including **Linear Regression, K-Means Clustering, Neural Networks, and Reinforcement Learning**.
 
 The following exercises were implemented:
 - **Exercise 1:** House Price Prediction using Linear Regression
@@ -18,33 +17,17 @@ The following exercises were implemented:
 - **Exercise 4:** Updating the State in the GridWorld Environment  
 
 
-
 ## **Exercise 1: House Price Prediction using Linear Regression**
 ### **Description**
-This exercise implements **Linear Regression** using the **California Housing dataset** to predict house prices.
+This exercise uses **Linear Regression** to predict house prices based on different features like median income, house age, and location.
 
 ### **Code Explanation**
-1. **Dataset Loading:**  
-   - The dataset is loaded using `fetch_california_housing()`. It contains **features like median income, house age, and location-based information**, which are used to predict house prices.
-  
-2. **Train-Test Split (80/20):**  
-   - We split the data into **80% training data** and **20% testing data** to evaluate the model.
-   - We use `random_state=42` to ensure reproducibility.
-  
-3. **Model Training:**  
-   - We create a **Linear Regression** model using `LinearRegression()`.
-   - The model is trained using `model.fit(X_train, y_train)`, which finds the best fit line for the training data.
-
-4. **Predictions & Evaluation:**
-   - We use `model.predict(X_test)` to generate predicted house prices.
-   - Performance metrics:
-     - **Mean Squared Error (MSE)**: Measures the average squared difference between actual and predicted values.
-     - **R² Score**: Measures how well the model explains the variance in house prices.
+The code first loads the **California Housing dataset** and separates it into input features and target prices. It then splits the data into **80% training and 20% testing**, ensuring the model learns from most of the data while keeping some for evaluation. A **Linear Regression model** is created and trained using the training data. Once trained, the model makes predictions on the test set. To check its performance, two metrics are used: **Mean Squared Error (MSE)**, which shows how far the predictions are from actual values, and **R² Score**, which tells how well the model explains the house price variations. A lower **MSE** and a higher **R² score** mean better predictions.
 
 ### **Why These Blanks Were Filled?**
-- `test_size=0.2` → Ensures **80% training and 20% testing split**, a common practice in machine learning.
-- `model.fit(X_train, y_train)` → Trains the **Linear Regression** model by finding the optimal weights.
-- `model.predict(X_test)` → Uses the trained model to predict **house prices**.
+- `test_size=0.2` → Splitting data into **80% training and 20% testing** is a common practice.  
+- `model.fit(X_train, y_train)` → Trains the **Linear Regression** model using training data.  
+- `model.predict(X_test)` → Uses the trained model to predict house prices on test data.  
 
 ### **Expected Output**
 Mean Squared Error: 0.558  
@@ -56,87 +39,49 @@ R² Score: 0.575
 
 ## **Exercise 2: Unsupervised Learning with K-Means Clustering**
 ### **Description**
-This exercise implements **K-Means Clustering**, an unsupervised machine learning technique that groups similar data points into clusters.
+This exercise applies **K-Means Clustering**, a technique that groups data points into clusters based on similarities.
 
 ### **Code Explanation**
-1. **Synthetic Data Generation:**  
-   - We generate 300 data points using `make_blobs()` with **4 distinct clusters**.
-  
-2. **K-Means Initialization:**  
-   - `KMeans(n_clusters=4, random_state=42)` initializes the clustering algorithm with **4 clusters**.
-
-3. **Training the Model:**  
-   - `kmeans.fit(X)` assigns each data point to one of the 4 clusters.
-
-4. **Cluster Labeling & Visualization:**  
-   - `kmeans.labels_` stores the cluster assignments.
-   - `kmeans.cluster_centers_` retrieves the **centroid positions**.
-   - A scatter plot visualizes the clustering.
+The code creates a dataset with **300 data points** divided into **4 groups (clusters)** using `make_blobs()`. Then, a **K-Means model** is created and set to find **4 clusters**. The model is trained on the dataset, meaning it assigns each point to one of the **4 clusters** based on distance from cluster centers. After training, each data point is labeled with its respective cluster, and the **cluster centers** are found. The results are visualized using a scatter plot, where each point is colored based on its cluster, and red **‘X’ markers** represent the cluster centers.
 
 ### **Why These Blanks Were Filled?**
-- `n_clusters=4` → The dataset was generated with **4 clusters**, so we specify **4 clusters** for K-Means.
-- `kmeans.fit(X)` → This method runs the **K-Means algorithm** and assigns each data point to a cluster.
+- `n_clusters=4` → The dataset was created with **4 clusters**, so we set **4 clusters** in K-Means.  
+- `kmeans.fit(X)` → Runs the **K-Means algorithm** and assigns each data point to a cluster.  
 
 ### **Expected Output**
-- The plot shows **four clusters**, with each point colored according to its cluster.  
-- **Cluster centers** (centroids) are marked as red 'X' points.  
+- A scatter plot showing **four different clusters** with different colors.  
+- Red 'X' markers representing **cluster centers**.  
 
 ---
 
 ## **Exercise 3: Simple Neural Network for Regression**
 ### **Description**
-This exercise implements a **feedforward neural network** using Keras for regression.
+This exercise builds a **neural network** to predict continuous values using **Keras**.
 
 ### **Code Explanation**
-1. **Model Architecture:**  
-   - The neural network consists of:
-     - **Input Layer:** `Dense(64, activation='relu', input_shape=(num_features,))`
-     - **Hidden Layer:** `Dense(64, activation='relu')`
-     - **Output Layer:** `Dense(1, activation='linear')`, suitable for regression.
-
-2. **Model Compilation:**  
-   - Uses **Adam optimizer** with `learning_rate=0.001`, which adapts learning rates dynamically.
-   - **MSE (Mean Squared Error)** is used as the loss function.
-
-3. **Training the Model:**  
-   - `model.fit(X_train, y_train, epochs=50, batch_size=32, verbose=1)`
-     - **50 epochs** allow the model to learn patterns.
-     - **Batch size 32** balances performance and memory efficiency.
+The code first defines a **neural network model** using the **Sequential API** in Keras. The model has **three layers**: an **input layer** that takes in the feature data, a **hidden layer** that learns patterns using **ReLU activation**, and an **output layer** that gives the final prediction using a **linear activation function**. The model is compiled using the **Adam optimizer** (`learning_rate=0.001`), which helps adjust learning dynamically, and **Mean Squared Error (MSE)** is chosen as the loss function because this is a regression problem. The model is trained for **50 epochs** with a **batch size of 32**, meaning it learns in small groups rather than processing all data at once. Over time, the loss decreases, showing that the model is improving.
 
 ### **Why These Blanks Were Filled?**
-- `input_shape=(num_features,)` → Ensures that the input layer correctly matches the feature count.
-- `learning_rate=0.001` → A small learning rate prevents overshooting optimal weights.
+- `input_shape=(num_features,)` → Ensures the input layer matches the number of features in the dataset.  
+- `learning_rate=0.001` → A small learning rate prevents the model from making large jumps and missing the best solution.  
 
 ### **Expected Output**
 Epoch 1/50 - Loss: 2856.552  
 Epoch 50/50 - Loss: 3.3242  
-- The **loss decreases**, showing that the model is learning.  
-- The final loss is **low**, meaning the model makes good predictions.  
+- The **loss decreases**, showing the model is learning and improving its predictions.  
 
 ---
 
 ## **Exercise 4: Updating the State in the GridWorld Environment**
 ### **Description**
-This exercise implements state transitions in a **GridWorld** reinforcement learning environment.
+This exercise updates the **position of an agent** in a **GridWorld** environment when it moves.
 
 ### **Code Explanation**
-1. **State Variables:**  
-   - `self.state = (r, c)` stores the **agent's current position** in the grid.
-
-2. **Action Handling:**  
-   - If the action is **0 (up)**, the agent moves **one row up** (`r - 1`).
-   - The `max(r - 1, 0)` ensures **the agent doesn’t move out of bounds**.
-
-3. **Terminal State Check:**  
-   - If the agent reaches a **terminal state**, a reward of **1** is returned.
-   - Otherwise, the reward is **0**, and the game continues.
+The function `step(action)` updates the **agent’s position** based on the action taken. The **state** of the agent is stored as `(row, column)`, and if the action is **"up" (action 0)**, the row index decreases. The function ensures that the agent does not move **out of bounds** by using `max(r - 1, 0)`, which keeps it from going below **row 0**. The agent keeps moving until it reaches a **terminal state**, where it receives a reward of **1**. If the agent is not in a terminal state, the function returns **0** as a reward.
 
 ### **Why This Blank Was Filled?**
-- `r = max(r - 1, 0)` → This ensures the agent moves **up by one row** but doesn’t exit the grid.
+- `r = max(r - 1, 0)` → Ensures that the agent moves **one step up** but does not go beyond the top boundary.  
 
 ### **Expected Output**
 - The agent correctly updates its **state** without moving out of bounds.  
 - It reaches a **goal state** and receives a reward **1**.  
-
----
-
