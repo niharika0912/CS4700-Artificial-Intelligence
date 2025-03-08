@@ -66,8 +66,8 @@ The code first defines a **neural network model** using the **Sequential API** i
 - `learning_rate=0.001` → A small learning rate prevents the model from making large jumps and missing the best solution.  
 
 ### **Expected Output**
-Epoch 1/50 - Loss: 2856.552  
-Epoch 50/50 - Loss: 3.3242  
+Epoch 1/50 - Loss: 2866.5252  
+Epoch 50/50 - Loss: 0.7012 
 - The **loss decreases**, showing the model is learning and improving its predictions.  
 
 ---
